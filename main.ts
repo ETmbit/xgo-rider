@@ -102,7 +102,7 @@ namespace xgo {
 
     export function move_xgo(move: Move, speed: number) {
         if (move == Move.Forward)
-            speed = -(speed/2)
+            speed = -speed
         let data = Math.map(speed, -100, 100, 0, 255)
         writeCommand(0x09, 0x30, data)
         basic.pause(100)
@@ -261,10 +261,17 @@ namespace XGoRider {
     //% block.loc.nl="rijd %movement"
     export function move(movement: Move) {
         xgo.rotate_xgo(Rotate.Clockwise, 0)
-        if (movement == Move.Forward)
-            xgo.move_xgo(Move.Forward, SPEED)
-        else
+        let spd: number
+        // speed needs (tested) corrections
+        if (movement == Move.Forward) {
+            spd = SPEED / 2
+            xgo.move_xgo(Move.Forward, spd)
+        }
+        else {
+            spd = SPEED * 2
+            if ( spd > 100) spd = 100
             xgo.move_xgo(Move.Backward, SPEED)
+        }
     }
 
     //% block="set speed to %speed \\%"
