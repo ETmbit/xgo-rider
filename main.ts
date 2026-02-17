@@ -104,7 +104,7 @@ namespace xgo {
         if (move == Move.Forward)
             speed = -(speed + 30) / 5
         else {
-            speed = speed * 3
+            speed = speed * 2
             if (speed > 100) speed = 100
         }
         let data = Math.map(speed, -100, 100, 0, 255)
