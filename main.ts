@@ -102,9 +102,7 @@ namespace xgo {
 
     export function move_xgo(move: Move, speed: number) {
         if (move == Move.Forward)
-            speed = -speed
-        else
-            speed /= 2
+            speed = -(speed/2)
         let data = Math.map(speed, -100, 100, 0, 255)
         writeCommand(0x09, 0x30, data)
         basic.pause(100)
