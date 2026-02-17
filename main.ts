@@ -109,7 +109,7 @@ namespace xgo {
     }
 
     export function rotate_xgo(rotation: Rotate, speed: number) {
-        if (rotation == Rotate.AntiClockwise)
+        if (rotation == Rotate.Clockwise)
             speed = -speed
         let data = Math.map(speed, -100, 100, 0, 255)
         writeCommand(0x09, 0x32, data)
